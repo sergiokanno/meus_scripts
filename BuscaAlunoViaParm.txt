@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#########################################################################
+#                                                                       #
+# BuscaAlunoViaParametro.sh - Procurar nome completo do aluno           #
+#                                                                       #
+# Autor: Ricardo Prudenciato (ricardo@linuxsemfronteiras.com.br)        #
+# Data Criação: DD/MM/YYYY                                              #
+#                                                                       #
+# Descrição: Script de exemplo de entrada via parametro.                #
+#            A partir de uma entrada do usuário, será feita uma         #
+#            busca no arquivo alunos2.txt                               #
+#                                                                       #
+#########################################################################
+
+if [ $# -gt 0 ]
+then
+	echo "Aluno informado para pesquisa: $1"
+else
+	echo "Nenhum aluno foi informado via parametro"
+	exit 1
+fi
+ 
+ARQALUNOS="$HOME/CursoShellScript/arquivos/alunos2.txt"
+
+echo "======= Script de Busca de Alunos ========"
+echo ""
+ALUNO=$1
+
+ALUNOCOMPLETO=$(sort -k1 $ARQALUNOS | grep -m1 "$ALUNO")
+RETURN_CODE=$?
+
+echo ""
+echo "RETURN_CODE da Pesquisa foi $RETURN_CODE"
+echo ""
+
+if [ $RETURN_CODE -eq 0 ]
+then
+        echo "O nome completo do aluno é: $ALUNOCOMPLETO"
+else
+        echo "Aluno $ALUNO não encontrado"
+fi
+
+echo ""
+echo "Fim do Script"

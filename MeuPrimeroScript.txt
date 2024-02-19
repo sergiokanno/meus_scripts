@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#
+### Definindo variáveis
+#
+DATA_HORA=$(date +%d/%m/%Y' '%H:%M:%S)
+ARQALUNOS="$HOME/CursoShellScript/arquivos/alunos2.txt"
+
+echo '************ Meu primeiro script ************'
+#
+### exibir data e hora
+#
+echo -n 'Exibir data e hora atual: '
+echo $DATA_HORA
+echo '*********************************************'
+#
+### exibir listagem de alunos
+#
+echo 'Listagem de Alunos: '
+sort $ARQALUNOS
+#
+### verifica se o sort foi executado com sucesso
+#
+echo '*********************************************'
+if [ $? -eq 0 ]
+then
+	echo "Processo executado com sucesso !!!"
+else
+	echo "Houve uma falha no processo"
+fi
+echo '*********************************************'
